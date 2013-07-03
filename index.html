@@ -6,12 +6,29 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="vendor/jquery/jquery-1.9.1.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="js/handlebars.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/backbone.js"></script>
     <script src="js/setup.js"></script>
   </head>
   <body>
+    <script id="search_template" type="text/x-handlebars-template">
+    <li class="message">{{username}} {{text}}</li>
+    </script>
+    <div id="main"><form>
+        <button class="home">Home</button>
+          <input type="text" name="roomInput" size = "20" id="roomform">
+          <button class="room">Go to room</button>
+        </form>
+      <div id="chatWindow"></div>
+      <div id="sendMessages">
+        <form>
+          <input type="text" name="userMessage" id="submittext" class="draft"size = "77"><br>
+        <button class="send" id="submitbtn" >Submit</button>
+        </form>
 
-    <div id="main">
-      <h1>Chat with JSON!</h1>
+      </div>
     </div>
 
   </body>

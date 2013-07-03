@@ -1,40 +1,50 @@
-body {
-    background: #eee;
-    text-align: center;
-    padding: 0 25px;
+body{
+  font-family: Arial,sans-serif;
 }
-
 #main {
-    width: 500px;
-    margin: auto;
+    padding: 10px;
+    text-align: center;
+    background: #bee3bd;
+    border: solid #8da7b3;
+    border-width: 5px;
+}
+
+#chatWindow {
+    background-color: white;
+    width:800px;
+    height:850px;
+    margin: 0 auto;
+    border: solid #8da7b3;
+    border-width: 5px;
+    overflow: auto;
+    box-shadow: 1px 1px 10px #888888;
+}
+.message {
+    margin-left: 10px;
+    list-style: none;
     text-align: left;
-    background: white;
-    padding: 50px 60px;
-    border: solid #ddd;
-    border-width: 0 1px 1px 1px;
+    color: #3d6599;
+    border-bottom: 1px solid #B8B8B8;
+    margin-top:5px;
+    margin-bottom:5px;
 }
-
-#main h1 {
-    margin-top: 0;
-    font-size: 35px;
+#submittext{
+  margin-top: 10px;
 }
-
-#main ul {
-    padding-left: 20px;
+.friend{
+  font-weight: bold;
 }
-
-#main .error {
-    border: 1px solid red;
-    background: #FDEFF0;
-    padding: 20px;
+.send{
+  margin-top: 5px;
 }
-
-#main .success {
-    margin-top: 25px;
+.message:hover {
+  text-shadow: 1px 0 #404040;
 }
-
-#main .success code {
-    font-size: 12px;
-    color: green;
-    line-height: 13px;
+#roomform {
+  margin-bottom: 5px;
+}
+.home{
+  background: transparent;
+  color:#3d6599;
+  border:none;
 }
