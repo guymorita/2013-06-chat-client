@@ -16,10 +16,10 @@ if(!/(&|\?)username=/.test(window.location.search)){
   chat.userName = window.location.href.split("?")[1].split("=")[1];
 }
 
-$.ajaxPrefilter(function(settings, _, jqXHR) {
-  jqXHR.setRequestHeader("X-Parse-Application-Id", "voLazbq9nXuZuos9hsmprUz7JwM2N0asnPnUcI7r");
-  jqXHR.setRequestHeader("X-Parse-REST-API-Key", "QC2F43aSAghM97XidJw8Qiy1NXlpL5LR45rhAVAf");
-});
+// $.ajaxPrefilter(function(settings, _, jqXHR) {
+//   jqXHR.setRequestHeader("X-Parse-Application-Id", "voLazbq9nXuZuos9hsmprUz7JwM2N0asnPnUcI7r");
+//   jqXHR.setRequestHeader("X-Parse-REST-API-Key", "QC2F43aSAghM97XidJw8Qiy1NXlpL5LR45rhAVAf");
+// });
 
 $(document).ready(function(){
   chat.Message = Backbone.Model.extend({
@@ -27,10 +27,10 @@ $(document).ready(function(){
 
   chat.MessageStore = Backbone.Collection.extend({
     model: chat.Message,
-    url: "https://api.parse.com/1/classes/messages?order=-createdAt",
-    parse: function(resp, options) {
-      return resp.results;
-    }
+    url: "http://127.0.0.1:8081/classes/messages",
+    // parse: function(resp, options) {
+    //   return resp.results;
+    // }
   });
 
   chat.latestMessages = new chat.MessageStore();
@@ -43,15 +43,16 @@ $(document).ready(function(){
     events:{"click #submitbtn":"handleNewMessage"},
     handleNewMessage: function(event){
       event.preventDefault();
-      debugger;
+      // debugger;
       console.log('jajaja');
       chat.latestMessages.create({
         text: $('#submittext').val(),
         username: chat.userName
       });
     },
-    template: _.template('<li class ="message"><%= username %>: <%= text %>: <%= createdAt %></li>'),
+    template: _.template('<li class ="message"><%= username %>: <%= text %></li>'),
     render: function(){
+      // debugger;
       chat.data = chat.latestMessages.map(function(message){return message;});
       _.each(chat.data,function(value){
         this.$el.append(this.template(value.attributes));
@@ -83,7 +84,7 @@ $(document).ready(function(){
   //   chat.sendText = JSON.stringify(chat.messageObject);
   //   $.ajax({
   //     type: "POST",
-  //     url: 'https://api.parse.com/1/classes/messages',
+  //     url: 'http://127.0.0.1:8081/classes/messages',
   //     data: chat.sendText,
   //     contentType: 'application/json'
   //   });
@@ -101,12 +102,12 @@ function ratchetmessages(){
     sendText = JSON.stringify(messageObject);
     $.ajax({
       type: "POST",
-      url: 'https://api.parse.com/1/classes/messages',
+      url: 'http://127.0.0.1:8081/classes/messages',
       data: sendText,
       contentType: 'application/json'
     });
 }
-setInterval(ratchetmessages,20000);
+setInterval(ratchetmessages,5000);
 setInterval(function(){
   chat.updater();
 },5000);
